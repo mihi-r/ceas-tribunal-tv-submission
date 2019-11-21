@@ -1,0 +1,36 @@
+{
+  "name": "ceas-tribunal-tv-submission",
+  "description": "Submit flyers advertising your event or organization to be displayed on CEAS Tribunal TVs",
+  "homepage": "https://tribunal.uc.edu",
+  "author": {
+    "name": "CEAS Tribunal",
+    "url": "https://tribunal.uc.edu"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mihi-r/ceas-tribunal-tv-submission"
+  },
+  "dependencies": {
+    "npm": "^6.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.0",
+    "event-stream": "^4.0.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^6.1.0",
+    "gulp-css-purge": "^3.0.9",
+    "gulp-rename": "^1.4.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typescript": "^5.0.1",
+    "gulp-uglify": "^3.0.2",
+    "rollup-stream": "^1.24.1",
+    "tsify": "^4.0.1",
+    "typescript": "^3.5.3",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "scripts": {
+    "watch": "gulp watch"
+  },
+  "license": "MIT"
+}
