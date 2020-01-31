@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="./build/main.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css">
 </head>
+
 <body>
     <div class="intro">
         <header>
@@ -21,15 +23,11 @@
             </div>
             <div class="intro-info">
                 <p>
-                    You can submit a flyer advertising your event or organization to be displayed on CEAS Tribunal TVs.
-                    These TVs are wall-mounted in Baldwin Hall and the Engineering Research Center.
-                    Your advertisement will be displayed alongside other promotional materials for 20 seconds
-                    and will continue to loop with the rest of the content. The advertisement will be taken down after 2
-                    weeks or when the date of the event expires.
+                    You can submit a flyer advertising your event or organization to be displayed on CEAS Tribunal TVs. These TVs are wall-mounted in Baldwin Hall and the Engineering Research Center. Your advertisement will be displayed alongside other promotional materials
+                    for 20 seconds and will continue to loop with the rest of the content. The advertisement will be taken down after 2 weeks or when the date of the event expires.
                 </p>
                 <p>
-                    To submit an ad, please fill out the form below.
-                    Provide a brief description describing the nature of your advertisement.
+                    To submit an ad, please fill out the form below. Provide a brief description describing the nature of your advertisement.
                 </p>
                 <figure>
                     <figcaption>Ad Requirements and Recommendations:</figcaption>
@@ -41,14 +39,22 @@
                     </ul>
                 </figure>
                 <p>
-                    Any advertisement regardless of the topics allowed will be reviewed according to the digression of CEAS Tribunal.
-                    Please allow a week to review your submission. You will receive an email when the submission is approved.
+                    Any advertisement regardless of the topics allowed will be reviewed according to the digression of CEAS Tribunal. Please allow a week to review your submission. You will receive an email when the submission is approved.
                 </p>
             </div>
             <form>
                 <input type="text" id="name" placeholder="Name" autocomplete="off">
 
                 <input type="text" id="email" name="email" placeholder="Email" autocomplete="off">
+
+                <input type="text" id="organization-name" name="organization-name" placeholder="Organization Name" autocomplete="off">
+
+                <input type="text" id="Description" name="Description" placeholder="Description" autocomplete="off">
+
+
+
+
+
 
                 <label for="ad-file" class="file-upload">
                     <input type="file" id="ad-file" accept="image/png, image/jpeg">
@@ -57,7 +63,12 @@
 
                 <input type="button" value="Submit" id="submit-button">
 
-                <div class="loader lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+                <div class="loader lds-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </form>
         </div>
 
@@ -65,8 +76,7 @@
             <div class="detail-box">
                 <p class="success-emoji">🎉</p>
                 <p>
-                    We have sent you an email to <span class="submission-email"></span> confirming your submission.
-                    You will receive an email when the submission is approved.
+                    We have sent you an email to <span class="submission-email"></span> confirming your submission. You will receive an email when the submission is approved.
                 </p>
             </div>
         </div>
@@ -74,9 +84,10 @@
 
     <footer>
         <p>University of Cincinnati | © 2019 College of Engineering and Applied Science Tribunal </p>
-        <p>For any questions or comments, contact us at uc.eas.tribunal@gmail.com.</p>      
+        <p>For any questions or comments, contact us at uc.eas.tribunal@gmail.com.</p>
     </footer>
 
     <script src="./build/scripts/submission.bundle.js" type="text/javascript"></script>
 </body>
+
 </html>
