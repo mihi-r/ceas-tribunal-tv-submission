@@ -6,7 +6,7 @@ export class SubmissionData {
     public email: string;
     public description: string;
     public org_name: string;
-    public file: string; 
+    public file: File; 
 
     /**
     The constructor
@@ -18,7 +18,7 @@ export class SubmissionData {
     **/
 
     constructor(
-        name: string, email: string, description: string, org_name: string, file: string
+        name: string, email: string, description: string, org_name: string, file: File
 
     ) {
         this.name = name;
@@ -35,7 +35,7 @@ export class SubmissionData {
         submissionFormData.append('emailText', this.email);
         submissionFormData.append('descriptionText', this.description);
         submissionFormData.append('org_nameText', this.org_name);
-        submissionFormData.append('file', this.file);
+        submissionFormData.append('imageFile', this.file);
 
         const response = await fetch('../api/send_submission.php', {
             method: 'POST',
