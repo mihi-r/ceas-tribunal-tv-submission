@@ -48,5 +48,16 @@ export const submitData = function(){
             displayWarning('Test - validation error')
         }
     });
-
 };
+
+export const watchFileUploadText = function () {
+    const fileUploadElement = document.querySelector('#ad-file') as HTMLInputElement;
+    const fileUploadText = document.querySelector('.file-text span') as HTMLSpanElement;
+
+    fileUploadElement.onchange = function () {
+        if (fileUploadElement.files !== null) {
+            const fileName = fileUploadElement.files[0].name;
+            fileUploadText.textContent = fileName;
+        }
+    };
+}
