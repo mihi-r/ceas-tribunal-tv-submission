@@ -38,9 +38,7 @@ function checkFile($file, $mb_size_limit, $expected_mime_types) {
         $file_check_result->message = 'Exceeded resume filesize limit of' . $mb_size_limit . "MB.";
     }
 
-    // Check file type
     $finfo = new finfo(FILEINFO_MIME_TYPE);
-
     $ext = array_search($finfo->file($file['tmp_name']), $expected_mime_types, true);
     if ($ext === false) {
         $file_check_result->file_safe = false;
