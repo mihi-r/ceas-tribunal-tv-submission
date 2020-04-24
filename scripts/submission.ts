@@ -1,3 +1,4 @@
-import { submitData } from './submissionUI'
+import { submitData, watchFileUploadText } from './submissionUI'
 
 submitData();
+watchFileUploadText();
