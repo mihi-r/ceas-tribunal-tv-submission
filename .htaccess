@@ -1,0 +1,2 @@
+RewriteEngine on
+RewriteRule ^$ /tv-submission/views [L]
