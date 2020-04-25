@@ -45,16 +45,16 @@ if (!$slide_image_check_result->file_safe) {
 
 //check name
 if (!preg_match("/^[\w\ \'\.]{1,256}$/", $name)) {
-    $result_data->message = 'Your name, ' . $name . ', is invalid. Please only use latin characters a-z with an optional '
-        . 'apostrophe or period. Your name is also limited to 128 characters.';
+    $result_data->message = 'Your name, ' . $name . ', is invalid. Please only use latin characters a-z or '
+        . 'one of the following characters: -,@,.,#,&,!. Your name is also limited to 256 characters.';
     echo json_encode($result_data);
     die();
 }
 
 //check organization name
-if (!preg_match("/^[\w\ \'\.]{1,256}$/", $org_name)) {
-    $result_data->message = 'Your organizaiton name, ' . $org_name . ', is invalid. Please only use latin characters a-z with an optional '
-        . 'apostrophe or period. Your organization name is also limited to 128 characters.';
+if (!preg_match("/^([a-zA-Z0-9]|[- @\.#&!,])*$/", $org_name)) {
+    $result_data->message = 'Your organizaiton name, ' . $org_name . ', is invalid. Please only use numbers, latin characters a-z, or '
+        . 'one of the following characters: -,@,.,#,&,!. Your organization name is also limited to 256 characters.';
     echo json_encode($result_data);
     die();
 }
@@ -62,15 +62,7 @@ if (!preg_match("/^[\w\ \'\.]{1,256}$/", $org_name)) {
 //check email
 if(!preg_match('/^[\w\W]+@[\w\W\d]{1,256}$/', $email)) {
     $result_data->message = 'Your email, ' . $email . ', is invalid. Please use an email in the following format: <>@<>. '
-        . 'Your email is also limited to 128 characters.';
-    echo json_encode($result_data);
-    die();
-}
-
-//check description
-if (!preg_match("/^[\w\ \'\.]{1,2000}$/", $description)) {
-    $result_data->message = 'Your description, ' . $description . ', is invalid. Please only use latin characters a-z with an optional '
-        . 'apostrophe or period. Your description is also limited to 128 characters.';
+        . 'Your email is also limited to 256 characters.';
     echo json_encode($result_data);
     die();
 }
@@ -113,10 +105,10 @@ if (!$result) {
 $mail = new PHPMailer(true);
 
 try {
-    $mail->Subject = "TV Advertisement Submitted";
+    $mail->Subject = "CEAS TV Advertisement Submitted";
 
     $email_msg = "Hello " . $name . ", \n \n";
-    $email_msg .= "This email is to confirm we have recieved your request to submit an advertisement to be displayed on the TVs in CEAS. ";
+    $email_msg .= "This email is to confirm we have recieved your request on the behalf of " . $org_name . " to submit an advertisement to be displayed on the TVs in CEAS. ";
     $email_msg .= "Your advertisement will be evaluated and if we require any further information, we will contact you. \n \n";
     $email_msg .= "If you have any questions, feel free to reply back to this email. \n \n";
     $email_msg .= "Best regards, \n";
@@ -127,7 +119,7 @@ try {
     $mail->addAddress($email, $name);
     $mail->send();
 } catch (Exception $e) {
-    $result_data->message = 'Error occurred while sending your confirmation email. Please email the admin in the description notifying of this error.';
+    $result_data->message = 'Error occurred while sending your confirmation email. Please email the admin in the footer notifying of this error.';
     echo json_encode($result_data);
     die();
 }
@@ -135,15 +127,15 @@ try {
 // Email admin
 $mail_admin = new PHPMailer(true);
 try {
-    $mail_admin->Subject = "Baldwin TV - Slide Submitted";
+    $mail_admin->Subject = "TV Ad Submission - CEAS Tribunal";
     $email_msg = "Hello " . $admin_name . ", \n \n";
-    $email_msg .= "Baldwin TV slides have been submitted with the following information: \n";
+    $email_msg .= "TV ad has been submitted with the following information: \n";
     $email_msg .= "Name: " . $name . " \n";
     $email_msg .= "Organization Name: " . $org_name . " \n";
     $email_msg .= "Email: " . $email . " \n";
-    $email_msg .= "Description: " . $description . " \n";
+    $email_msg .= "Description: " . $description . " \n \n";
     $email_msg .= "The slide submission is attached to this email. ";
-    $email_msg .= "Please review this slide and then approve or deny the submission. \n \n";
+    $email_msg .= "Please review this slide and then approve or deny the submission by replying to " . $email . ". \n \n";
     $email_msg .= "Best regards, \n";
     $email_msg .= $super_email;
     $mail_admin->Body = $email_msg;
@@ -155,7 +147,7 @@ try {
     $mail_admin->AddAttachment($slide_image['tmp_name'], $slide_image['name'], 'base64', $mime);
     $mail_admin->send();
 } catch (Exception $e) {
-    $result_data->message = 'Error occurred while sending the admin the submission email. Please email the admin to notify them of this error.';
+    $result_data->message = 'Error occurred while sending the admin the submission email. Please email the admin in the footer to notify them of this error.';
     echo json_encode($result_data);
     die();
 }

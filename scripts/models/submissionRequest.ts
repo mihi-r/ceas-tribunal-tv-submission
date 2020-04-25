@@ -46,7 +46,7 @@ export class SubmissionData {
         const data: SubmissionAPIResponse = await response.json();
 
         if (data.status === StatusConstants.ERROR) {
-            throw new Error(data.data);
+            throw new Error(data.message);
         }
     }
 }

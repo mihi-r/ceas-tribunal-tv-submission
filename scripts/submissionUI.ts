@@ -5,7 +5,6 @@ import { FileConstants } from '../constants/fileConstants';
 export const submitData = function(){
 
     const submitButton = document.querySelector('form #submit-button') as HTMLButtonElement;
-    console.log(submitButton);
 
     const loader = document.querySelector('.loader') as HTMLDivElement;
 
@@ -18,15 +17,17 @@ export const submitData = function(){
         const description = document.querySelector('form #Description') as HTMLInputElement;
         const ad = document.querySelector('form #ad-file') as HTMLInputElement;
 
-        if(!validateInputFieldData(name,email,orgName,description)){
+        if(!validateInputFieldData(name, email, orgName, description) && ad.files !== null && ad.files.length > 0){
             // Add file checking
             submitButton.style.display = 'none';
             loader.style.display = 'block';
 
-            if (ad.files === null || (ad.files[0] && ad.files[0].size > fileSizeLimit)) {
+            if (ad.files[0] && ad.files[0].size > fileSizeLimit) {
                 displayWarning('Please choose a file under 2MB.');
+                submitButton.style.display = 'block';
+                loader.style.display = 'none';
             } else {
-                const submissionData = new SubmissionData(name.value, email.value,orgName.value, description.value, ad.files[0]);
+                const submissionData = new SubmissionData(name.value, email.value, description.value, orgName.value, ad.files[0]);
 
                 try {
                     await submissionData.sendData();
@@ -45,7 +46,7 @@ export const submitData = function(){
                 }
             }
         } else {
-            displayWarning('Test - validation error')
+            displayWarning('Please complete all fields.')
         }
     });
 };
